@@ -1,5 +1,5 @@
 import * as sst from "@serverless-stack/resources";
-import {CfnOutput} from "@aws-cdk/core";
+import {CfnOutput, RemovalPolicy} from "@aws-cdk/core";
 import * as dynamodb from "@aws-cdk/aws-dynamodb";
 
 export default class DynamoDBStack extends sst.Stack {
@@ -12,6 +12,7 @@ export default class DynamoDBStack extends sst.Stack {
             billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
             sortKey: {name: "noteId", type: dynamodb.AttributeType.STRING},
             partitionKey: {name: "userId", type: dynamodb.AttributeType.STRING},
+            removalPolicy: RemovalPolicy.DESTROY,
         })
 
         new CfnOutput(this, "TableName", {

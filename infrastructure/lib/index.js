@@ -1,4 +1,5 @@
 import DynamoDBStack from "./DynamoDBStack";
+import S3Stack from "./S3Stack";
 
 export default function main(app) {
     // Set default runtime for all functions
@@ -7,7 +8,6 @@ export default function main(app) {
     });
 
     new DynamoDBStack(app, "dynamodb");
-    // new MyStack(app, "my-stack");
 
-    // Add more stacks
+    new S3Stack(app, "s3");
 }
