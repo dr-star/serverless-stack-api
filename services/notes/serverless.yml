@@ -1,4 +1,4 @@
-service: cri-notes-api
+service: notes-api
 
 # Create an optimized package for our functions
 package:
@@ -56,3 +56,9 @@ functions:
       - http:
           path: notes
           method: post
+  get:
+    handler: get.main
+    events:
+      - http:
+          path: notes/{id}
+          method: get
