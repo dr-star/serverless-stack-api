@@ -135,6 +135,23 @@ custom:
 
 To [override the default config](https://eslint.org/docs/user-guide/configuring), add a `.eslintrc.json` file. To ignore ESLint for specific files, add it to a `.eslintignore` file.
 
+## How to create test account
+First, we will use AWS CLI to sign up a user with their email and password.
+```
+aws cognito-idp sign-up \
+--region YOUR_COGNITO_REGION \
+--client-id YOUR_COGNITO_APP_CLIENT_ID \
+--username admin@example.com \
+--password Passw0rd!
+```
+Now, the user is created in Cognito User Pool. However, before the user can authenticate with the User Pool, the account needs to be verified. Let’s quickly verify the user using an administrator command.
+```
+aws cognito-idp admin-confirm-sign-up \
+  --region YOUR_COGNITO_REGION \
+  --user-pool-id YOUR_COGNITO_USER_POOL_ID \
+  --username admin@example.com
+```
+
 ### Support
 
 - Open a [new issue](https://github.com/AnomalyInnovations/serverless-nodejs-starter/issues/new) if you've found a bug or have some suggestions.
